@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>annyang! Easily add speech recognition to your site</title>
+  <title>annyang! Easily add (Arabic) speech recognition to your site</title>
   <meta name="description" content="annyang is a JavaScript SpeechRecognition library that makes adding voice commands to your site super-easy. Let your users control your site with their voice." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:image" content="https://www.talater.com/annyang/images/icon_speech.png"/>
@@ -46,6 +46,10 @@
       scrollTo("#section_image_search");
     };
 
+    var showSpeech = function(term) {
+      $('#speech_to_text').html(term);
+    };
+
     var jsonFlickrApi = function(results) {
       $('#flickrLoader p').fadeOut('slow');
       var photos = results.photos.photo;
@@ -74,17 +78,14 @@
     // * The value is the action to do.
     //   You can pass a function, a function name (as a string), or write your function as part of the commands object.
     var commands = {
-      'hello (there)':        hello,
-      'show me *search':      showFlickr,
-      'show :type report':    showTPS,
-      'let\'s get started':   getStarted,
+      '*search':      showSpeech,
     };
 
     // OPTIONAL: activate debug mode for detailed logging in the console
     annyang.debug();
 
     // Add voice commands to respond to
-    // annyang.addCommands(commands);
+    annyang.addCommands(commands);
 
     // OPTIONAL: Set a language for speech recognition (defaults to English)
     annyang.setLanguage('ar-EG');
@@ -110,6 +111,7 @@
     <h1><em>annyang!</em> SpeechRecognition that just works</h1>
     <h2>annyang is a tiny javascript library that lets your visitors control your site with voice commands.</h2>
     <h2>annyang supports multiple languages, has no dependencies, weighs just 2kb and is free to use.</h2>
+    <h1 id="speech_to_text">اتكلم ... قول حاجة</h1>
     <img src="images/icon_user.png">
     <img src="images/icon_speech.png">
     <img src="images/icon_js.png">
